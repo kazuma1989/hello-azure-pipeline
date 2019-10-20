@@ -8,7 +8,8 @@
   "scripts": {
     "start": "parcel ./src/index.html",
     "prebuild": "yarn install",
-    "build": "parcel build ./src/index.html"
+    "build": "parcel build ./src/index.html",
+    "test": "echo no test"
   },
   "dependencies": {
     "react": "^16.10.2",

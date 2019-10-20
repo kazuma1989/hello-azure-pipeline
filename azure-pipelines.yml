@@ -28,10 +28,31 @@ stages:
 
           - bash: |
               yarn build
-            displayName: Yarn install and build
+            displayName: Install dependencies and build
 
           - publish: $(Build.SourcesDirectory)/dist
             artifact: WebApp
+
+      - job: Test
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - bash: |
+              set -x
+
+              whoami
+              pwd
+              ls -lA ./
+
+              which node
+              which yarn
+              node -v
+              yarn -v
+            displayName: Debugging
+
+          - bash: |
+              yarn test
+            displayName: Run tests
 
   - stage: Deploy
     jobs:
