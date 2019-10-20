@@ -6,7 +6,9 @@
   "author": "kazuma1989 <funifuni.1204@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "parcel ./src/index.html"
+    "start": "parcel ./src/index.html",
+    "prebuild": "yarn install",
+    "build": "parcel build ./src/index.html"
   },
   "dependencies": {
     "react": "^16.10.2",
