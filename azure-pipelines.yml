@@ -54,7 +54,7 @@ stages:
       - deployment: Release
         pool:
           vmImage: ubuntu-latest
-        environment: smarthotel-dev.web
+        environment: smarthotel-dev
         strategy:
           runOnce:
             deploy:
