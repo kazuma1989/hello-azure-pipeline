@@ -1,0 +1,19 @@
+{
+  "name": "hello-azure-pipeline",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:kazuma1989/hello-azure-pipeline.git",
+  "author": "kazuma1989 <funifuni.1204@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "parcel ./src/index.html"
+  },
+  "dependencies": {
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "typescript": "^3.6.4"
+  }
+}
