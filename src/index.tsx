@@ -1,10 +1,10 @@
-import * as React from 'react'
+import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 
 function App() {
-  const [count, setCount] = React.useState(0)
+  const [count, setCount] = useState(0)
 
-  React.useEffect(() => {
+  useEffect(() => {
     setTimeout(() => setCount(v => v + 1), 1000)
   })
 
