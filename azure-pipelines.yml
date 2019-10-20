@@ -41,4 +41,5 @@ stages:
 
               which node
               which yarn
+            workingDirectory: $(Pipeline.Workspace)
             displayName: Debugging
