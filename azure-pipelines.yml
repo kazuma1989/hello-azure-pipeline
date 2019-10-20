@@ -35,7 +35,7 @@ stages:
 
   - stage: Deploy
     jobs:
-      - job: Build
+      - job: Deploy
         pool:
           vmImage: ubuntu-latest
         steps:
@@ -54,5 +54,7 @@ stages:
 
               which node
               which yarn
+              node -v
+              yarn -v
             workingDirectory: $(Pipeline.Workspace)
             displayName: Debugging
