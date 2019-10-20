@@ -56,26 +56,25 @@ stages:
 
   - stage: Deploy
     jobs:
-      - job: Deploy
+      - deployment: Release
         pool:
           vmImage: ubuntu-latest
-        steps:
-          - checkout: none
+        environment: smarthotel-dev.web
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - bash: |
+                    set -x
 
-          - download: current
-            artifact: WebApp
+                    whoami
+                    pwd
+                    ls -lA ./
+                    ls -lA ./*
 
-          - bash: |
-              set -x
-
-              whoami
-              pwd
-              ls -lA ./
-              ls -lA ./*
-
-              which node
-              which yarn
-              node -v
-              yarn -v
-            workingDirectory: $(Pipeline.Workspace)
-            displayName: Debugging
+                    which node
+                    which yarn
+                    node -v
+                    yarn -v
+                  workingDirectory: $(Pipeline.Workspace)
+                  displayName: Debugging
