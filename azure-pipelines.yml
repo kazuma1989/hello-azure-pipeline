@@ -30,7 +30,6 @@ stages:
 
           - download: current
             artifact: WebApp
-            patterns: '**/.js'
 
           - bash: |
               set -x
