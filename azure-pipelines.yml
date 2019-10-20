@@ -14,6 +14,19 @@ stages:
             displayName: Install Node.js
 
           - bash: |
+              set -x
+
+              whoami
+              pwd
+              ls -lA ./
+
+              which node
+              which yarn
+              node -v
+              yarn -v
+            displayName: Debugging
+
+          - bash: |
               yarn build
             displayName: Yarn install and build
 
