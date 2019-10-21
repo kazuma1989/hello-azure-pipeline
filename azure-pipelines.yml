@@ -1,23 +1,75 @@
-# Node.js with React
-# Build a Node.js project that uses React.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
-
 trigger:
-- master
+  - master
 
-pool:
-  vmImage: 'ubuntu-latest'
+stages:
+  - stage: Build
+    jobs:
+      - job: Build
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - bash: |
+              set -x
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+              whoami
+              pwd
+              ls -lA ./
 
-- script: |
-    yarn build
-  displayName: 'yarn install and build'
+              which node
+              which yarn
+              node -v
+              yarn -v
+            displayName: Debugging
 
-- publish: $(System.DefaultWorkingDirectory)/dist
-  artifact: WebApp
+          - bash: |
+              yarn build
+            displayName: Install dependencies and build
+
+          - publish: $(Build.SourcesDirectory)/dist
+            artifact: WebApp
+
+      - job: Test
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - bash: |
+              set -x
+
+              whoami
+              pwd
+              ls -lA ./
+
+              which node
+              which yarn
+              node -v
+              yarn -v
+            displayName: Debugging
+
+          - bash: |
+              yarn test
+            displayName: Run tests
+
+  - stage: Deploy
+    jobs:
+      - deployment: Release
+        pool:
+          vmImage: ubuntu-latest
+        environment: smarthotel-dev
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - bash: |
+                    set -x
+
+                    whoami
+                    pwd
+                    ls -lA ./
+                    ls -lA ./*
+
+                    which node
+                    which yarn
+                    node -v
+                    yarn -v
+                  workingDirectory: $(Pipeline.Workspace)
+                  displayName: Debugging
