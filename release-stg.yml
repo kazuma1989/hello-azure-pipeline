@@ -1,0 +1,22 @@
+trigger: none
+
+stages:
+  - stage: Release
+    jobs:
+      - deployment: Release
+        pool:
+          vmImage: ubuntu-latest
+        environment: staging
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - bash: |
+                    set -x
+
+                    whoami
+                    pwd
+                    ls -lA ./
+                    ls -lA ./*
+                  workingDirectory: $(Pipeline.Workspace)
+                  displayName: Debugging
