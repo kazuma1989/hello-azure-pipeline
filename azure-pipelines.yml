@@ -49,6 +49,6 @@ stages:
               yarn test
             displayName: Run tests
 
-  - template: ./release.tmpl.yml
+  - template: release.tmpl.yml
     parameters:
       environment: dev1
