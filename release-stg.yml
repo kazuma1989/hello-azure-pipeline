@@ -8,30 +8,7 @@ schedules:
         - master
 
 stages:
-  - stage: Release
-    jobs:
-      - deployment: Release
-        pool:
-          vmImage: ubuntu-latest
-        environment: staging
-        strategy:
-          runOnce:
-            deploy:
-              steps:
-                - task: DownloadPipelineArtifact@2
-                  inputs:
-                    buildType: specific
-                    project: "$(System.TeamProjectId)"
-                    definition: "8"
-                    specificBuildWithTriggering: true
-                    buildVersionToDownload: latest
-
-                - bash: |
-                    set -x
-
-                    whoami
-                    pwd
-                    ls -lA ./
-                    ls -lA ./*
-                  workingDirectory: $(Pipeline.Workspace)
-                  displayName: Debugging
+  - template: ./release.tmpl.yml
+    parameters:
+      environment: staging
+      standalone: true

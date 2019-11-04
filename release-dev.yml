@@ -1,0 +1,8 @@
+trigger: none
+pr: none
+
+stages:
+  - template: ./release.tmpl.yml
+    parameters:
+      environment: $(envkey)
+      standalone: true
