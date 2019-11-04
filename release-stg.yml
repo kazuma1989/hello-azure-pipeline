@@ -21,9 +21,9 @@ stages:
                 - task: DownloadPipelineArtifact@2
                   inputs:
                     buildType: specific
-                    project: "$(System.TeamProjectId)"
-                    # curl 'https://dev.azure.com/kazuma1989/hello-azure-pipeline/_apis/build/definitions?name=Push+trigger&api-version=5.0' | jq '.value[0].id'
-                    pipelineId: 8
+                    project: '90649f0f-0fae-4c93-bd10-36f077330d47'
+                    definition: '8'
+                    specificBuildWithTriggering: true
                     buildVersionToDownload: latest
 
                 - bash: |
