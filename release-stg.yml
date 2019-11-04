@@ -21,8 +21,8 @@ stages:
                 - task: DownloadPipelineArtifact@2
                   inputs:
                     buildType: specific
-                    project: hello-azure-pipeline
-                    pipelineId: 8
+                    project: $(System.TeamProjectId)
+                    pipelineId: 8 # Push trigger
                     buildVersionToDownload: latest
 
                 - bash: |
