@@ -1,5 +1,5 @@
 parameters:
-  environment: ''
+  environment: ""
 
 stages:
   - stage: Release
@@ -7,7 +7,7 @@ stages:
       - deployment: Deploy
         pool:
           vmImage: ubuntu-latest
-        environment: ${{ parameters.vmImage }}
+        environment: ${{ parameters.environment }}
         strategy:
           runOnce:
             deploy:
