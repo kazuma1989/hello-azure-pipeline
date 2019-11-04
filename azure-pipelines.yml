@@ -2,7 +2,7 @@ trigger:
   - master
 
 stages:
-  - stage: Build
+  - stage: Build & Test
     jobs:
       - job: Build
         pool:
@@ -49,27 +49,6 @@ stages:
               yarn test
             displayName: Run tests
 
-  - stage: Deploy
-    jobs:
-      - deployment: Release
-        pool:
-          vmImage: ubuntu-latest
-        environment: smarthotel-dev
-        strategy:
-          runOnce:
-            deploy:
-              steps:
-                - bash: |
-                    set -x
-
-                    whoami
-                    pwd
-                    ls -lA ./
-                    ls -lA ./*
-
-                    which node
-                    which yarn
-                    node -v
-                    yarn -v
-                  workingDirectory: $(Pipeline.Workspace)
-                  displayName: Debugging
+  - template: ./release.tmpl.yml
+    parameters:
+      environment: dev1
