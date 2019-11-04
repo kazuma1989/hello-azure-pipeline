@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/kazuma1989/hello-azure-pipeline/_apis/build/status/Push%20Trigger?branchName=master)](https://dev.azure.com/kazuma1989/hello-azure-pipeline/_build/latest?definitionId=8&branchName=master)
+
 # Hello Azure Pipeline
 
 ## References
