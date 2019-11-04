@@ -21,8 +21,8 @@ stages:
                 - task: DownloadPipelineArtifact@2
                   inputs:
                     buildType: specific
-                    project: '90649f0f-0fae-4c93-bd10-36f077330d47'
-                    definition: '8'
+                    project: "$(System.TeamProjectId)"
+                    definition: "8"
                     specificBuildWithTriggering: true
                     buildVersionToDownload: latest
 
