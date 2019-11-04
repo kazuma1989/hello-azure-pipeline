@@ -1,4 +1,11 @@
 trigger: none
+pr: none
+schedules:
+  - cron: "0 0 * * *"
+    displayName: Daily midnight release
+    branches:
+      include:
+        - master
 
 stages:
   - stage: Release
@@ -11,6 +18,14 @@ stages:
           runOnce:
             deploy:
               steps:
+                - task: DownloadPipelineArtifact@2
+                  inputs:
+                    buildType: specific
+                    project: "$(System.TeamProjectId)"
+                    definition: "8"
+                    specificBuildWithTriggering: true
+                    buildVersionToDownload: latest
+
                 - bash: |
                     set -x
 
