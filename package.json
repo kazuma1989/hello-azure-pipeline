@@ -1,7 +1,6 @@
 {
   "name": "hello-azure-pipeline",
   "version": "1.0.0",
-  "main": "index.js",
   "repository": "git@github.com:kazuma1989/hello-azure-pipeline.git",
   "author": "kazuma1989 <funifuni.1204@gmail.com>",
   "license": "MIT",
