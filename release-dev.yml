@@ -1,0 +1,11 @@
+variables:
+  env: ""
+
+trigger: none
+pr: none
+
+stages:
+  - template: ./release.tmpl.yml
+    parameters:
+      environment: $(env)
+      standalone: true
