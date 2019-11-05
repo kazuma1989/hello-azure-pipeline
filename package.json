@@ -7,7 +7,7 @@
   "scripts": {
     "start": "parcel ./src/index.html",
     "prebuild": "yarn install",
-    "build": "parcel build ./src/index.html",
+    "build": "parcel build ./src/index.html --public-url .",
     "test": "echo no test"
   },
   "dependencies": {
