@@ -1,6 +1,8 @@
 parameters:
-  environment: ""
+  environment: "" # dev1, dev2, ..., dev10, qa1, ..., qa5, stable, staging
   standalone: false
+  artifact: WebApp
+  aws_region: ap-northeast-1
 
 stages:
   - stage: Release
@@ -17,22 +19,20 @@ stages:
                     - task: DownloadPipelineArtifact@2
                       inputs:
                         buildType: specific
+                        # Project ID
+                        # curl 'https://dev.azure.com/kazuma1989/_apis/projects/hello-azure-pipeline?api-version=5.0' | jq '.id'
+                        # > "90649f0f-0fae-4c93-bd10-36f077330d47"
                         project: "$(System.TeamProjectId)"
+                        # Definition ID (ID for the pipeline)
+                        # curl 'https://dev.azure.com/kazuma1989/hello-azure-pipeline/_apis/build/definitions?name=Push+Trigger&api-version=5.0' | jq '.value[0].id'
                         definition: "8"
                         specificBuildWithTriggering: true
                         buildVersionToDownload: latest
 
                 - bash: |
-                    set -x
-
-                    whoami
-                    pwd
-                    ls -lA ./
-                    ls -lA ./*
-
-                    which node
-                    which yarn
-                    node -v
-                    yarn -v
-                  workingDirectory: $(Pipeline.Workspace)
-                  displayName: Debugging
+                    aws s3 sync . "s3://hello-azure-pipeline/${ENVKEY}"
+                  workingDirectory: $(Pipeline.Workspace)/${{ parameters.artifact }}
+                  env:
+                    ENVKEY: ${{ parameters.environment }}
+                    AWS_DEFAULT_REGION: ${{ parameters.aws_region }}
+                  displayName: Upload to S3
