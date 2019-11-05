@@ -37,4 +37,5 @@ stages:
                   env:
                     ENVKEY: ${{ parameters.environment }}
                     AWS_DEFAULT_REGION: ${{ parameters.aws_region }}
+                    AWS_SECRET_ACCESS_KEY: $(AWS_SECRET_ACCESS_KEY)
                   displayName: Upload to S3
