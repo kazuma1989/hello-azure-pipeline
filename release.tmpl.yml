@@ -1,6 +1,3 @@
-variables:
-  - group: AWS credential
-
 parameters:
   environment: "" # dev1, dev2, ..., dev10, qa1, ..., qa5, stable, staging
   standalone: false
@@ -14,6 +11,8 @@ stages:
         pool:
           vmImage: ubuntu-latest
         environment: ${{ parameters.environment }}
+        variables:
+          - group: AWS credential
         strategy:
           runOnce:
             deploy:
